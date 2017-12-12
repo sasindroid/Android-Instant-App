@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    buildToolsVersion '27.0.2'
+    compileSdkVersion 27
+
+//    dataBinding {
+//        enabled true
+//    }
+
+    defaultConfig {
+        applicationId "com.google.samples.apps.topeka"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            postprocessing {
+                removeUnusedCode false
+                removeUnusedResources false
+                obfuscate false
+                optimizeCode false
+                proguardFile 'proguard-rules.pro'
+            }
+        }
+    }
+}
+
+ext {
+    supportLibVersion = "27.0.2"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':topeka-base')
+    implementation project(":topekaui")
+
+//    implementation "com.android.support:support-v4:${supportLibVersion}"
+//    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
+}
